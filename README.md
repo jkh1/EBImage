@@ -1,12 +1,14 @@
 ## Installation
 
-The package is distributed as part of the [Bioconductor](http://bioconductor.org/packages/EBImage) project.
-To install this package, start R and enter:
+This package is a fork of the [original](https://github.com/aoles/EBImage) that makes some variables from the image viewer available to Shiny apps.
+
+To install this version of the package, start R and enter:
 
 ```
-install.packages("BiocManager")
-BiocManager::install("EBImage")
+library(devtools)
+install_github("jkh1/EBImage")
 ```
+Note that this may overwrite a preexisting EBImage installation.
 
 ## Documentation
 
@@ -14,9 +16,7 @@ For an overview of the package functionality, see the [package vignette](http://
 
 Once you install the package, you can access individual man pages by a call to, e.g., `?Image`.
 
-## FAQ
 
-See [my answers on Stack Overflow](http://stackoverflow.com/search?q=user%3A2792099+%09is%3Aanswer+EBimage).
 
 ## Bug reports and feature requests
 
