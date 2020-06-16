@@ -202,8 +202,12 @@ function Viewer(parent){
 		image.src = data[(frame-1)];
 
 		currentFrame = frame;
-		viewer.updateStatusField("Frame", currentFrame+'/'+numberOfFrames);
+	    viewer.updateStatusField("Frame", currentFrame+'/'+numberOfFrames);
+
+	    if (typeof Shiny != "undefined") {
 	        Shiny.setInputValue("currentFrame", currentFrame);
+	    }
+	    
 	    
 		// button locking
 		buttons['first'].disable(currentFrame==1);
@@ -378,7 +382,9 @@ function Viewer(parent){
 
 	    image.style.cursor = cursor;
 	    previousMousePosition = getMouseXY(event);
-	    Shiny.setInputValue("pixelPosition", viewer.getPixelPosition(event));
+	    if (typeof Shiny != "undefined") {
+		Shiny.setInputValue("pixelPosition", viewer.getPixelPosition(event));
+	    }
 	    image.onmousemove = viewer.dragImage;
 	}
 
@@ -547,9 +553,10 @@ function Viewer(parent){
   	// set up image
 	viewer.setFrame();
 	image.onload = viewer.resetCanvas();
-
-	Shiny.setInputValue("imgWidth", originalWidth);
-	Shiny.setInputValue("imgHeight", originalHeight);
+	if(typeof Shiny != "undefined") {
+	    Shiny.setInputValue("imgWidth", originalWidth);
+	    Shiny.setInputValue("imgHeight", originalHeight);
+	}
 	viewer.updateStatusField("Image", originalWidth+'x'+originalHeight);
       
   }
